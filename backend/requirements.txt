@@ -1,37 +1,30 @@
-# Sistema de Triagem Inteligente - Sponte
-# Dependências Python
-
-# Framework Web
+# Core FastAPI dependencies
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-
-# Validação de dados
-pydantic==2.5.0
-
-# Cliente HTTP
+pydantic==2.4.2
 httpx==0.25.2
 
-# IA (Google Gemini)
+# AI and ML
 google-generativeai==0.3.2
 
-# Firebase (Firestore)
+# Firebase
 firebase-admin==6.4.0
 google-cloud-firestore==2.13.1
 
-# Utilitários
+# Environment and utilities
 python-dotenv==1.0.0
 python-multipart==0.0.6
 
 # CORS
 fastapi-cors==0.0.6
 
-# JSON
-orjson==3.9.10
+# JSON handling (using ujson instead of orjson for better compatibility)
+ujson==5.8.0
 
 # Logging
 structlog==23.2.0
 
-# Desenvolvimento (opcional)
+# Development tools
 pytest==7.4.3
 pytest-asyncio==0.21.1
 black==23.11.0
