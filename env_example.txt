@@ -1,0 +1,51 @@
+# Configuração do Sistema de Triagem Inteligente
+# Sponte - N3 Suporte
+# 
+# Renomeie este arquivo para .env e configure as variáveis
+
+# ============================================
+# API GOOGLE GEMINI (OPCIONAL)
+# ============================================
+# Para obter a chave gratuita:
+# 1. Acesse: https://aistudio.google.com/app/apikey
+# 2. Faça login com conta Google
+# 3. Clique em "Create API Key"
+# 4. Copie a chave e cole abaixo
+GEMINI_API_KEY=sua_chave_gemini_aqui
+
+# ============================================
+# CONFIGURAÇÕES DO SERVIDOR
+# ============================================
+PORT=8001
+HOST=0.0.0.0
+DEBUG=true
+
+# ============================================
+# CONFIGURAÇÕES DE BANCO (FUTURO)
+# ============================================
+# DATABASE_URL=sqlite:///./triagem.db
+# DATABASE_PATH=./triagem.db
+
+# ============================================
+# CONFIGURAÇÕES DE LOG
+# ============================================
+LOG_LEVEL=INFO
+LOG_FILE=triagem.log
+
+# ============================================
+# CONFIGURAÇÕES DE INTEGRAÇÃO
+# ============================================
+# URL do sistema principal (IaChamadoN3)
+# SISTEMA_PRINCIPAL_URL=http://localhost:8000
+
+# ============================================
+# CONFIGURAÇÕES DE SEGURANÇA (FUTURO)
+# ============================================
+# SECRET_KEY=sua_chave_secreta_aqui
+# ALLOWED_HOSTS=localhost,127.0.0.1
+
+# ============================================
+# CONFIGURAÇÕES DE PERFORMANCE
+# ============================================
+# TIMEOUT_IA=30
+# MAX_CONCURRENT_REQUESTS=10

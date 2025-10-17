@@ -1,0 +1,203 @@
+{
+  "versao": "1.0",
+  "ultima_atualizacao": "2025-01-27",
+  "padroes_codigo": {
+    "vb_net": {
+      "erro_salvar": {
+        "palavras_chave": [
+          "erro ao salvar",
+          "save failed",
+          "constraint violation",
+          "violação de restrição",
+          "não foi possível salvar",
+          "falha ao salvar",
+          "btnSalvar_Click",
+          "método salvar"
+        ],
+        "solucao_tipo": "codigo",
+        "categoria": "Validação/Dados",
+        "prioridade": "alta",
+        "solucao": "Verificar validações de dados, constraints do banco e tratamento de exceções no método de salvar",
+        "codigo_sugerido": "Implementar Try-Catch no BtnSalvar_Click e validar dados antes de salvar",
+        "script_sql_sugerido": "SELECT * FROM tabela WHERE campo = valor_duplicado"
+      },
+      "erro_excluir": {
+        "palavras_chave": [
+          "erro ao excluir",
+          "delete failed",
+          "registro em uso",
+          "foreign key constraint",
+          "não foi possível excluir",
+          "falha ao excluir",
+          "btnExcluir_Click",
+          "método excluir"
+        ],
+        "solucao_tipo": "codigo",
+        "categoria": "Integridade Referencial",
+        "prioridade": "alta",
+        "solucao": "Verificar dependências e constraints de chave estrangeira antes de excluir",
+        "codigo_sugerido": "Verificar se existem registros dependentes antes de excluir",
+        "script_sql_sugerido": "SELECT * FROM tabela_dependente WHERE fk_id = id_registro"
+      },
+      "erro_incluir": {
+        "palavras_chave": [
+          "erro ao incluir",
+          "insert failed",
+          "dados obrigatórios",
+          "não foi possível incluir",
+          "falha ao incluir",
+          "btnIncluir_Click",
+          "método incluir",
+          "required field"
+        ],
+        "solucao_tipo": "codigo",
+        "categoria": "Validação/Dados",
+        "prioridade": "media",
+        "solucao": "Verificar se todos os campos obrigatórios estão preenchidos e válidos",
+        "codigo_sugerido": "Validar campos obrigatórios antes de executar INSERT",
+        "script_sql_sugerido": "INSERT INTO tabela (campos_obrigatorios) VALUES (valores_validados)"
+      }
+    },
+    "asp_net": {
+      "erro_ajax": {
+        "palavras_chave": [
+          "ajax error",
+          "500 error",
+          "internal server error",
+          "erro interno do servidor",
+          "ajax failed",
+          "webmethod error",
+          "page method error"
+        ],
+        "solucao_tipo": "debug",
+        "categoria": "Comunicação",
+        "prioridade": "alta",
+        "solucao": "Verificar logs do servidor, validação de dados AJAX e tratamento de exceções",
+        "codigo_sugerido": "Implementar Try-Catch nos WebMethods e validar dados de entrada",
+        "script_sql_sugerido": null
+      },
+      "erro_postback": {
+        "palavras_chave": [
+          "postback error",
+          "viewstate error",
+          "erro de postback",
+          "viewstate corrupted",
+          "page lifecycle error"
+        ],
+        "solucao_tipo": "debug",
+        "categoria": "Estado da Página",
+        "prioridade": "media",
+        "solucao": "Verificar ViewState, Page Lifecycle e controles que causam PostBack",
+        "codigo_sugerido": "Verificar EnableViewState e Page_Load com IsPostBack",
+        "script_sql_sugerido": null
+      }
+    }
+  },
+  "padroes_banco": {
+    "constraint_violation": {
+      "palavras_chave": [
+        "constraint violation",
+        "violação de restrição",
+        "duplicate key",
+        "chave duplicada",
+        "foreign key constraint",
+        "restrição de chave estrangeira",
+        "unique constraint",
+        "restrição única"
+      ],
+      "solucao_tipo": "sql",
+      "categoria": "Integridade de Dados",
+      "prioridade": "alta",
+      "solucao": "Verificar dados duplicados ou violações de integridade referencial",
+      "codigo_sugerido": "Implementar validação antes de INSERT/UPDATE",
+      "scripts_sugeridos": [
+        "SELECT * FROM tabela WHERE campo_duplicado = 'valor'",
+        "SELECT COUNT(*) FROM tabela WHERE campo_duplicado = 'valor'",
+        "DELETE FROM tabela WHERE id IN (SELECT MIN(id) FROM tabela GROUP BY campo_duplicado HAVING COUNT(*) > 1)"
+      ]
+    },
+    "timeout": {
+      "palavras_chave": [
+        "timeout",
+        "tempo limite",
+        "query timeout",
+        "connection timeout",
+        "command timeout",
+        "execution timeout"
+      ],
+      "solucao_tipo": "performance",
+      "categoria": "Performance",
+      "prioridade": "alta",
+      "solucao": "Otimizar consulta SQL ou aumentar timeout da conexão",
+      "codigo_sugerido": "Aumentar CommandTimeout ou otimizar consulta",
+      "scripts_sugeridos": [
+        "EXPLAIN PLAN para consulta",
+        "CREATE INDEX ON tabela(campo_filtro)",
+        "SELECT TOP 1000 * FROM tabela WHERE condicao"
+      ]
+    },
+    "deadlock": {
+      "palavras_chave": [
+        "deadlock",
+        "interbloqueio",
+        "deadlock victim",
+        "transaction deadlock"
+      ],
+      "solucao_tipo": "sql",
+      "categoria": "Concorrência",
+      "prioridade": "alta",
+      "solucao": "Revisar ordem de locks e transações",
+      "codigo_sugerido": "Implementar retry logic e revisar ordem de operações",
+      "scripts_sugeridos": [
+        "SET DEADLOCK_PRIORITY LOW",
+        "BEGIN TRANSACTION",
+        "COMMIT TRANSACTION"
+      ]
+    }
+  },
+  "padroes_sistema": {
+    "permissao": {
+      "palavras_chave": [
+        "acesso negado",
+        "access denied",
+        "permissão negada",
+        "não autorizado",
+        "unauthorized",
+        "forbidden",
+        "perfil insuficiente"
+      ],
+      "solucao_tipo": "configuracao",
+      "categoria": "Segurança",
+      "prioridade": "media",
+      "solucao": "Verificar perfil de usuário e permissões do sistema",
+      "codigo_sugerido": "Verificar User.IsInRole() e permissões do usuário",
+      "script_sql_sugerido": "SELECT * FROM usuarios_perfis WHERE usuario_id = ?"
+    },
+    "configuracao": {
+      "palavras_chave": [
+        "banco não configurado",
+        "database not configured",
+        "configuração inválida",
+        "invalid configuration",
+        "parâmetro não encontrado"
+      ],
+      "solucao_tipo": "configuracao",
+      "categoria": "Configuração",
+      "prioridade": "alta",
+      "solucao": "Verificar configurações de banco e parâmetros do sistema",
+      "codigo_sugerido": "Verificar web.config e connection strings",
+      "script_sql_sugerido": "SELECT * FROM parametros_sistema WHERE chave = 'configuracao_banco'"
+    }
+  },
+  "solucoes_templates": {
+    "codigo_vb_net": {
+      "validacao_dados": "If String.IsNullOrEmpty(campo) Then Throw New ArgumentException(\"Campo obrigatório\")\nTry\n    ' Código de operação\nCatch ex As Exception\n    Throw New Exception($\"Erro na operação: {ex.Message}\")\nEnd Try",
+      "tratamento_erro": "Try\n    ' Operação principal\n    Return True\nCatch ex As SqlException\n    ' Tratar erros específicos de SQL\n    Throw New Exception(\"Erro de banco de dados\")\nCatch ex As Exception\n    ' Tratar outros erros\n    Throw New Exception(\"Erro inesperado\")\nEnd Try"
+    },
+    "scripts_sql": {
+      "verificar_duplicados": "SELECT campo, COUNT(*) as total FROM tabela GROUP BY campo HAVING COUNT(*) > 1",
+      "limpar_duplicados": "WITH CTE AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY campo ORDER BY id) as rn\n    FROM tabela\n)\nDELETE FROM CTE WHERE rn > 1",
+      "verificar_integridade": "SELECT t1.* FROM tabela_principal t1\nLEFT JOIN tabela_dependente t2 ON t1.id = t2.fk_id\nWHERE t2.fk_id IS NULL"
+    }
+  }
+}
